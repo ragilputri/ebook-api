@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BookController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -18,3 +20,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('me','AuthController@me');
+
+//Routes API
+Route::get('books','BookController@index');
+Route::post('books','BookController@store');
+Route::get('books/{id}','BookController@show');
+Route::put('books/{id}','BookController@update');
+Route::delete('books/{id}','BookController@destroy');

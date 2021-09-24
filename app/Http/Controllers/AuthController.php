@@ -14,9 +14,9 @@ class AuthController extends Controller
     public function me()
     {
         $biodata = [
-            "nis"=>'3103119151',
-            "name"=>'Ragil Putri Rahmadani',
-            "phone"=>'081372053478',
+            "nis"=>'3103119155',
+            "name"=>'Rasdha Chalya Putri',
+            "phone"=>'085157533043',
             "gender"=>'Perempuan',
             "class"=>'XII RPL 5'
         ];
