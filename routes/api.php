@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,8 +21,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('me','AuthController@me');
-
 //Routes Books
 Route::get('books','BookController@index');
 Route::post('books','BookController@store');
@@ -35,3 +34,10 @@ Route::post('authors','AuthorController@store');
 Route::get('authors/{id}','AuthorController@show');
 Route::put('authors/{id}','AuthorController@update');
 Route::delete('authors/{id}','AuthorController@destroy');
+
+// routes/api.php
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/me', [AuthController::class, 'me'])->middleware('auth:sanctum');
+
+
