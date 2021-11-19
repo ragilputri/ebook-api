@@ -31,22 +31,22 @@ class AuthController extends Controller
 
           $user = User::create([
                   'name' => $validatedData['name'],
-                       'email' => $validatedData['email'],
-                       'password' => Hash::make($validatedData['password']),
+                    'email' => $validatedData['email'],
+                    'password' => Hash::make($validatedData['password']),
            ]);
 
     $token = $user->createToken('auth_token')->plainTextToken;
 
     return response()->json([
                   'access_token' => $token,
-                       'token_type' => 'Bearer',
+                    'token_type' => 'Bearer',
     ]);
     }
     public function login(Request $request)
     {
         if (!Auth::attempt($request->only('email', 'password'))) {
         return response()->json([
-        'message' => 'Invalid login details'
+        'message' => 'Email atau Password salah'
                 ], 401);
             }
 
@@ -63,9 +63,14 @@ class AuthController extends Controller
     {
     return $request->user();
     }
-    public function create()
+
+    public function logout(Request $request)
     {
-        //
+        Auth::user()->tokens()->delete();
+
+        return [
+            'message' => 'Anda Sudah Logout'
+        ];
     }
 
     /**
